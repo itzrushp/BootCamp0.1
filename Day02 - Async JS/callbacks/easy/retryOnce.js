@@ -4,6 +4,15 @@
 // If the second attempt also fails, the error should be properly propagated. 
 // This problem tests error handling, retry logic, and correct use of async/await with Promises.
 
-function retryOnce(fn) {}
+function retryOnce(fn) {
+    return async function(){
+        try{
+            return await fn(...args);
+        }catch(err){
+            return await fn(...args);
+        }
+        
+    }
+}
 
 module.exports = retryOnce;
